@@ -1,0 +1,24 @@
+Package: autotracer
+Title: Probabilistically Identify Clusters in Electronic Medical Records
+Version: 0.0.1
+Authors@R: c(
+    person(given = "Michael",
+           family = "DeWitt",
+           role = c("aut", "cre"),
+           email = "michael.dewitt@conehealth.com",
+           comment = c(ORCID = "0000-0001-8940-1967")),
+    person(family = "Cone Health", role = c("aut", "cph"))
+           )
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    outbreaker2,
+    data.table,
+    epitrix,
+    distcrete
+Depends: 
+    R (>= 2.10)
