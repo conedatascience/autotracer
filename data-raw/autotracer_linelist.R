@@ -21,7 +21,7 @@ df <- r_data_frame(
 )
 
 # Add generic test dates
-df$patient_id <- 1:nrow(df)
+df <- dplyr::rename(df, patient_id = ID)
 df$date <- sample(seq.Date(as.Date("2020-06-01"),
                            as.Date("2020-07-01"), by = 1),
                   size = 10500, replace = T)
