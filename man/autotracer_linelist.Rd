@@ -3,16 +3,27 @@
 \docType{data}
 \name{autotracer_linelist}
 \alias{autotracer_linelist}
-\title{Simulated Data for Illustration
-\format{a data.frame with 10,5000 rows and 9 columns}}
+\title{Simulated Patient Data
+Synthetic data that can be used to explore "autotracer"}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 10500 rows and 9 columns.
+a data.frame with 10500 rows and 9 columns:
+\describe{
+\item{x}{Latitude}
+\item{y}{Longitude}
+\item{Race}{Race indentifier}
+\item{patient_id}{Unique patient indentifier (e.g. MRN)}
+\item{Age}{Age of the patient in years}
+\item{Sex}{Biological sex of the patient}
+\item{Language}{Primary spoken language of the patient}
+\item{Age10}{Age given as a ten year age group}
+\item{date}{Date of test or infection identification}
+}
 }
 \usage{
 autotracer_linelist
 }
 \description{
-Simulated Data for Illustration
-\format{a data.frame with 10,5000 rows and 9 columns}
+Simulated Patient Data
+Synthetic data that can be used to explore "autotracer"
 }
 \keyword{datasets}

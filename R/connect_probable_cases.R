@@ -14,10 +14,11 @@
 #' @importFrom data.table .SD `:=`
 #' @export
 
-connect_probable_cases <- function(dat, weights_in = NULL, threshold = 30, exposure_link = NULL){
+connect_probable_cases <- function(dat, weights_in = NULL,
+                                   threshold = 30, exposure_link = NULL){
 
   # Check Names
-  stopifnot(all(names(dat)%in% c("date", "patient_id")))
+  stopifnot(c("date", "patient_id") %in% all(names(dat)))
 
   # Check Threshold
   stopifnot(is.numeric(threshold))
@@ -60,20 +61,22 @@ connect_probable_cases <- function(dat, weights_in = NULL, threshold = 30, expos
 
   tree <- tree[time<=threshold, .(from, to)]
 
-  tree <- merge(tree, dat[ ,c("id", "patient_id", "date")], by.x = "from", by.y="id", all.x = TRUE)
+  tree <- merge(tree, dat[ ,c("id", "patient_id", "date")],
+                by.x = "from", by.y="id", all.x = TRUE)
 
   tree <-tree[,.(patient_id,to, date)]
 
   names(tree) <- c("from", "to", "from_date")
 
-  tree <- merge(tree, dat[ ,c("id", "patient_id", "date")], by.x = "to", by.y="id", all.x = TRUE)
+  tree <- merge(tree, dat[ ,c("id", "patient_id", "date")],
+                by.x = "to", by.y="id", all.x = TRUE)
 
   tree <- tree[,.(from, patient_id, from_date, date)]
 
   names(tree) <- c("from", "to", "from_date", "to_date")
 
   tree <- tree[,diff_dt_onset := abs(as.numeric(to_date-from_date))]
-  tree <- tree[!is.na(from), .(from,to, diff_dt_onset)]
+  tree <- tree[!is.na(from), list(from,to, diff_dt_onset)]
 
   if(!is.null(exposure_link)){
     tree <- cbind(tree, exposure_link = exposure_link)
