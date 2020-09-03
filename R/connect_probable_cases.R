@@ -18,7 +18,7 @@ connect_probable_cases <- function(dat, weights_in = NULL,
                                    threshold = 30, exposure_link = NULL){
 
   # Check Names
-  stopifnot(c("date", "patient_id") %in% all(names(dat)))
+  stopifnot(all(c("date", "patient_id") %in% names(dat)))
 
   # Check Threshold
   stopifnot(is.numeric(threshold))
